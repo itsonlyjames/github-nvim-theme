@@ -15,7 +15,7 @@ return function(style)
   local tint = function(color)
     return {
       a = { bg = color, fg = s.bg1 },
-      b = { bg = blend(color, 0.2), fg = blend(color, 0.8) },
+      b = { bg = blend(color, 0.1), fg = blend(color, 0.9) },
       c = {
         bg = config.transparent and 'NONE' or blend(color, 0.01),
         fg = blend(color, 0.8),
