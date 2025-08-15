@@ -113,6 +113,7 @@ local defaults = {
   ---@field neogit? boolean|GhTheme.Config.Module
   ---@field neotree? boolean|GhTheme.Config.Module
   ---@field notify? boolean|GhTheme.Config.Module
+  ---@field snacks? boolean|GhTheme.Config.Module
   ---@field nvimtree? boolean|GhTheme.Config.Module
   ---@field telescope? boolean|GhTheme.Config.Module
   ---@field treesitter? boolean|GhTheme.Config.Module
@@ -147,6 +148,9 @@ local defaults = {
 
     treesitter = util.is_nvim,
     lsp_semantic_tokens = util.is_nvim,
+    snacks = {
+      enable = true,
+    },
   },
 }
 
