@@ -16,7 +16,10 @@ return function(style)
     return {
       a = { bg = color, fg = s.bg1 },
       b = { bg = blend(color, 0.2), fg = blend(color, 0.8) },
-      c = { bg = blend(color, 0.01), fg = blend(color, 0.60) },
+      c = {
+        bg = config.transparent and 'NONE' or blend(color, 0.01),
+        fg = blend(color, 0.8),
+      },
     }
   end
 
