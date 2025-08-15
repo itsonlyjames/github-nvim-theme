@@ -520,6 +520,7 @@ Current list of modules are:
 - neotree
 - notify
 - nvimtree
+- snacks
 - telescope
 - treesitter
 - treesitter_context
