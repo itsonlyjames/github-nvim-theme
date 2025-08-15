@@ -1,3 +1,5 @@
+-- https://github.com/folke/snacks.nvim/
+
 local M = {}
 
 ---@param spec GhTheme.Spec
