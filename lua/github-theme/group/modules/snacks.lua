@@ -8,24 +8,6 @@ local M = {}
 function M.get(spec, config, opts)
   local c = spec.palette
 
-  -- Map catppuccin colors to github theme equivalents
-  local C = {
-    blue = c.blue.base,
-    yellow = c.yellow.base,
-    peach = c.orange,
-    red = c.red.base,
-    rosewater = c.magenta.base,
-    lavender = c.blue.bright,
-    pink = c.magenta.base,
-    flamingo = c.accent.fg,
-    surface0 = spec.bg3,
-    text = spec.fg1,
-    none = 'NONE',
-    crust = spec.bg0,
-    mauve = c.magenta.base,
-    green = c.green.base,
-  }
-
   -- Handle configuration options
   local indent_scope_color = (opts and opts.indent_scope_color) or 'text'
   local float_transparent = config and config.options and config.options.transparent
@@ -38,81 +20,85 @@ function M.get(spec, config, opts)
     SnacksNormalNC = { link = 'NormalFloat' },
     SnacksWinBarNC = { link = 'SnacksWinBar' },
 
-    SnacksNotifierInfo = { fg = C.blue },
-    SnacksNotifierIconInfo = { fg = C.blue },
-    SnacksNotifierTitleInfo = { fg = C.blue, style = 'italic' },
+    SnacksNotifierInfo = { fg = c.blue.base },
+    SnacksNotifierIconInfo = { fg = c.blue.base },
+    SnacksNotifierTitleInfo = { fg = c.blue.base, style = 'italic' },
     SnacksNotifierFooterInfo = { link = 'DiagnosticInfo' },
-    SnacksNotifierBorderInfo = { fg = C.blue },
+    SnacksNotifierBorderInfo = { fg = c.blue.base },
 
-    SnacksNotifierWarn = { fg = C.yellow },
-    SnacksNotifierIconWarn = { fg = C.yellow },
-    SnacksNotifierTitleWarn = { fg = C.yellow, style = 'italic' },
-    SnacksNotifierBorderWarn = { fg = C.yellow },
+    SnacksNotifierWarn = { fg = c.yellow.base },
+    SnacksNotifierIconWarn = { fg = c.yellow.base },
+    SnacksNotifierTitleWarn = { fg = c.yellow.base, style = 'italic' },
+    SnacksNotifierBorderWarn = { fg = c.yellow.base },
     SnacksNotifierFooterWarn = { link = 'DiagnosticWarn' },
 
-    SnacksNotifierDebug = { fg = C.peach },
-    SnacksNotifierIconDebug = { fg = C.peach },
-    SnacksNotifierTitleDebug = { fg = C.peach, style = 'italic' },
-    SnacksNotifierBorderDebug = { fg = C.peach },
+    SnacksNotifierDebug = { fg = c.orange },
+    SnacksNotifierIconDebug = { fg = c.orange },
+    SnacksNotifierTitleDebug = { fg = c.orange, style = 'italic' },
+    SnacksNotifierBorderDebug = { fg = c.orange },
     SnacksNotifierFooterDebug = { link = 'DiagnosticHint' },
 
-    SnacksNotifierError = { fg = C.red },
-    SnacksNotifierIconError = { fg = C.red },
-    SnacksNotifierTitleError = { fg = C.red, style = 'italic' },
-    SnacksNotifierBorderError = { fg = C.red },
+    SnacksNotifierError = { fg = c.red.base },
+    SnacksNotifierIconError = { fg = c.red.base },
+    SnacksNotifierTitleError = { fg = c.red.base, style = 'italic' },
+    SnacksNotifierBorderError = { fg = c.red.base },
     SnacksNotifierFooterError = { link = 'DiagnosticError' },
 
-    SnacksNotifierTrace = { fg = C.rosewater },
-    SnacksNotifierIconTrace = { fg = C.rosewater },
-    SnacksNotifierTitleTrace = { fg = C.rosewater, style = 'italic' },
-    SnacksNotifierBorderTrace = { fg = C.rosewater },
+    SnacksNotifierTrace = { fg = c.magenta.base },
+    SnacksNotifierIconTrace = { fg = c.magenta.base },
+    SnacksNotifierTitleTrace = { fg = c.magenta.base, style = 'italic' },
+    SnacksNotifierBorderTrace = { fg = c.magenta.base },
     SnacksNotifierFooterTrace = { link = 'DiagnosticHint' },
 
     SnacksDashboardNormal = { link = 'Normal' },
-    SnacksDashboardDesc = { fg = C.blue },
-    SnacksDashboardFile = { fg = C.lavender },
+    SnacksDashboardDesc = { fg = c.blue.base },
+    SnacksDashboardFile = { fg = c.blue.bright },
     SnacksDashboardDir = { link = 'NonText' },
-    SnacksDashboardFooter = { fg = C.yellow, style = 'italic' },
-    SnacksDashboardHeader = { fg = C.blue },
-    SnacksDashboardIcon = { fg = C.pink, style = 'bold' },
-    SnacksDashboardKey = { fg = C.peach },
+    SnacksDashboardFooter = { fg = c.yellow.base, style = 'italic' },
+    SnacksDashboardHeader = { fg = c.blue.base },
+    SnacksDashboardIcon = { fg = c.magenta.base, style = 'bold' },
+    SnacksDashboardKey = { fg = c.orange },
     SnacksDashboardTerminal = { link = 'SnacksDashboardNormal' },
     SnacksDashboardSpecial = { link = 'Special' },
     SnacksDashboardTitle = { link = 'Title' },
 
-    SnacksIndent = { fg = C.surface0 },
-    SnacksIndentScope = { fg = C[indent_scope_color] or C.text },
+    SnacksIndent = { fg = spec.bg3 },
+    SnacksIndentScope = {
+      fg = indent_scope_color == 'text' and spec.fg1
+          or c[indent_scope_color] and c[indent_scope_color].base
+          or spec.fg1,
+    },
 
     SnacksPickerSelected = {
-      fg = float_transparent and C.flamingo or C.text,
-      bg = float_transparent and C.none or C.surface0,
+      fg = float_transparent and c.accent.fg or spec.fg1,
+      bg = float_transparent and 'NONE' or spec.bg3,
       style = 'bold',
     },
-    SnacksPickerMatch = { fg = C.blue },
+    SnacksPickerMatch = { fg = c.orange },
 
     SnacksPicker = { link = 'NormalFloat' },
     SnacksPickerBorder = { link = 'FloatBorder' },
     SnacksPickerInputBorder = { link = 'SnacksPickerBorder' },
     SnacksPickerInput = { link = 'NormalFloat' },
-    SnacksPickerPrompt = { fg = C.flamingo },
+    SnacksPickerPrompt = { fg = c.accent.fg },
   }
 
   if float_solid then
     hlgroups['SnacksPickerTitle'] = {
-      fg = C.crust,
-      bg = C.mauve,
+      fg = spec.bg0,
+      bg = c.magenta.base,
     }
     hlgroups['SnacksPickerPreviewTitle'] = {
-      fg = C.crust,
-      bg = C.green,
+      fg = spec.bg0,
+      bg = c.green.base,
     }
     hlgroups['SnacksPickerInputTitle'] = {
-      fg = C.crust,
-      bg = C.red,
+      fg = spec.bg0,
+      bg = c.red.base,
     }
     hlgroups['SnacksPickerListTitle'] = {
-      fg = C.crust,
-      bg = C.lavender,
+      fg = spec.bg0,
+      bg = c.blue.bright,
     }
   end
 
