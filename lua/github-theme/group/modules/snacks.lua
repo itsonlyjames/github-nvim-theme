@@ -59,7 +59,7 @@ function M.get(spec, config, opts)
     SnacksDashboardIcon = { fg = c.orange, style = 'bold' },
     SnacksDashboardKey = { fg = c.yellow.bright },
     SnacksDashboardTerminal = { link = 'SnacksDashboardNormal' },
-    SnacksDashboardSpecial = { fg = c.fg.muted },
+    SnacksDashboardSpecial = { fg = c.fg.default },
     SnacksDashboardTitle = { link = 'Title' },
 
     SnacksIndent = { fg = spec.bg3 },
