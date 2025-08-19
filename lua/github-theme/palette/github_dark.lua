@@ -171,7 +171,7 @@ local function generate_spec(pal)
     error = pal.danger.fg,
     warn  = pal.attention.fg,
     info  = pal.accent.fg,
-    hint  = pal.fg.muted,
+    hint  = pal.attention.fg,
   }
 
   spec.diag_bg = {
